@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * This class provides database table
+ * This class provides database table "Author"
  * @author maximusfk
  *
  */
@@ -34,7 +34,7 @@ public class Author {
 	}
 
 	/**
-	 * Return id for this object
+	 * Return id for this author
 	 * @return id
 	 */
 	public Integer getId() {
@@ -42,7 +42,7 @@ public class Author {
 	}
 
 	/**
-	 * Set id for this object
+	 * Set id for this author
 	 * @param id
 	 */
 	public void setId(Integer id) {

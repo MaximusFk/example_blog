@@ -52,7 +52,7 @@ public class Article {
 	}
 
 	/**
-	 * Return id for this object
+	 * Return id for this article
 	 * @return id
 	 */
 	public Integer getId() {
@@ -60,7 +60,7 @@ public class Article {
 	}
 
 	/**
-	 * Set id for this object
+	 * Set id for this article
 	 * @param id
 	 */
 	public void setId(Integer id) {
