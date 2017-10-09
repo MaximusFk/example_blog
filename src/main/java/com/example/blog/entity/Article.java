@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Article {
 
 	@Id @GeneratedValue
-	@Column(name = "id")
+	@Column(name = "id", nullable = false)
 	private Integer id;
 	
 	@ManyToOne
@@ -42,7 +42,6 @@ public class Article {
 	public Article() {}
 
 	public Article(Integer id, Author author, String title, String label, String text, Date createdDate) {
-		super();
 		this.id = id;
 		this.author = author;
 		this.title = title;

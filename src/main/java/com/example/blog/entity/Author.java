@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Author {
 	
 	@Id @GeneratedValue
-	@Column(name = "id")
+	@Column(name = "id", nullable = false)
 	private Integer id;
 	
 	@Column(name = "name")
