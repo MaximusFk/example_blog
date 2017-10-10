@@ -39,6 +39,9 @@ public class Article {
 	@Column(name = "created_date")
 	private Date createdDate;
 	
+	/**
+	 * Default constructor for HTTP request
+	 */
 	public Article() {}
 
 	public Article(Integer id, Author author, String title, String label, String text, Date createdDate) {

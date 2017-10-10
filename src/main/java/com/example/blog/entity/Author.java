@@ -25,6 +25,9 @@ public class Author {
 	@Column(name = "email")
 	private String email;
 	
+	/**
+	 * Default constructor for HTTP request
+	 */
 	public Author() {}
 
 	public Author(Integer id, String name, String email) {
