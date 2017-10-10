@@ -33,50 +33,32 @@ public class Author {
 		this.email = email;
 	}
 
-	/**
-	 * Return id for this author
-	 * @return id
-	 */
+	
 	public Integer getId() {
 		return id;
 	}
 
-	/**
-	 * Set id for this author
-	 * @param id
-	 */
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	 * Return author name
-	 * @return name
-	 */
+	
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * Set author name
-	 * @param name
-	 */
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * Return author email
-	 * @return email
-	 */
+	
 	public String getEmail() {
 		return email;
 	}
 	
-	/**
-	 * Set author email
-	 * @param email
-	 */
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}

@@ -50,42 +50,27 @@ public class Article {
 		this.createdDate = createdDate;
 	}
 
-	/**
-	 * Return id for this article
-	 * @return id
-	 */
+	
 	public Integer getId() {
 		return id;
 	}
 
-	/**
-	 * Set id for this article
-	 * @param id
-	 */
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	 * Return author for this article
-	 * @return author
-	 */
+	
 	public Author getAuthor() {
 		return author;
 	}
 
-	/**
-	 * Set the author for this article
-	 * @param author
-	 */
+	
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
 
-	/**
-	 * Return article title 
-	 * @return title
-	 */
+	
 	public String getTitle() {
 		return title;
 	}
@@ -98,50 +83,32 @@ public class Article {
 		this.title = title;
 	}
 
-	/**
-	 * Return article label
-	 * @return label
-	 */
+	
 	public String getLabel() {
 		return label;
 	}
 
-	/**
-	 * Set article label
-	 * @param label
-	 */
+	
 	public void setLabel(String label) {
 		this.label = label;
 	}
 	
-	/**
-	 * Return article text
-	 * @return text
-	 */
+	
 	public String getText() {
 		return this.text;
 	}
 	
-	/**
-	 * Set article text
-	 * @param text
-	 */
+	
 	public void setText(String text) {
 		this.text = text;
 	}
 
-	/**
-	 * Return article created date
-	 * @return date
-	 */
+	
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	/**
-	 * Set article created date
-	 * @param createdDate
-	 */
+	
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
