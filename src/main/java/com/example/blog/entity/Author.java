@@ -30,6 +30,12 @@ public class Author {
 	 */
 	public Author() {}
 
+	/**
+	 * Creates a new Author object with specific id, name and email
+	 * @param id
+	 * @param name
+	 * @param email
+	 */
 	public Author(Integer id, String name, String email) {
 		this.id = id;
 		this.name = name;

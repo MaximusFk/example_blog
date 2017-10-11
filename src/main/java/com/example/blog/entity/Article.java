@@ -44,6 +44,15 @@ public class Article {
 	 */
 	public Article() {}
 
+	/**
+	 * Creates a new Article object with specific id, author, title, label, text and date of creation
+	 * @param id
+	 * @param author
+	 * @param title
+	 * @param label
+	 * @param text
+	 * @param createdDate
+	 */
 	public Article(Integer id, Author author, String title, String label, String text, Date createdDate) {
 		this.id = id;
 		this.author = author;
@@ -78,10 +87,7 @@ public class Article {
 		return title;
 	}
 
-	/**
-	 * Set article title
-	 * @param title
-	 */
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
