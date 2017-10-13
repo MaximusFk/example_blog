@@ -49,8 +49,8 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	@Override
@@ -62,8 +62,8 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	@Override
@@ -75,8 +75,8 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	@Override
@@ -87,6 +87,7 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
 		return entity.getId();
 	}
@@ -101,11 +102,14 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 				session.flush();
 				return true;
 			}
+			else {
+				return false;
+			}
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return false;
 	}
 
 }

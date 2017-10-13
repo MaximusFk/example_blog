@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
@@ -50,8 +49,8 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	@Override
@@ -63,33 +62,34 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	@Override
-	public Integer create(Author entity) {
+	public Integer create(Author author) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			Integer id = (Integer) session.save(entity);
+			Integer id = (Integer) session.save(author);
 			return id;
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return null;
 	}
 
 	@Override
-	public Integer update(Author entity) {
+	public Integer update(Author author) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			session.saveOrUpdate(entity);
+			session.saveOrUpdate(author);
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return entity.getId();
+		return author.getId();
 	}
 
 	@Override
@@ -102,11 +102,14 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 				session.flush();
 				return true;
 			}
+			else {
+				return false;
+			}
 		}
 		catch (HibernateException e) {
 			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
-		return false;
 	}
 
 }
