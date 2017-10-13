@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.example.blog.entity.Author;
 
 /**
- * Base DAO implementation for Hibernate
+ * Base DAO implementation for Author data model using Hibernate
  * @author maximusfk
  *
  */

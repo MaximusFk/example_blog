@@ -2,6 +2,13 @@ package com.example.blog.database;
 
 import java.util.List;
 
+
+/**
+ * Base interface for implementation access to database with specific Entity
+ * @author maximusfk
+ *
+ * @param <Entity>
+ */
 public interface IBaseDAOService <Entity> {
 	
 	
