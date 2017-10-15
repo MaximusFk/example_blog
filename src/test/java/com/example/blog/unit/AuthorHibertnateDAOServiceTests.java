@@ -26,20 +26,20 @@ public class AuthorHibertnateDAOServiceTests {
 	AuthorHibernateDAOService authorDAOService;
 	
 	@Test
-	public void testSelectAll() {
+	public void testGetAll() {
 		List<Author> authors = authorDAOService.getAll();
 		assertTrue(authors.size() > 0);
 	}
 
 	@Test
-	public void testSelect() {
+	public void testGetById() {
 		Author author = authorDAOService.getById(1);
 		assertNotNull(author);
 	}
 
 	@Test
 	public void testCreate() {
-		Author author = new Author(15, "Test name", "test@email.com");
+		Author author = new Author(null, "Test name", "test@email.com");
 		Integer created_id = authorDAOService.create(author);
 		assertNotNull(created_id);
 	}
