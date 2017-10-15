@@ -27,13 +27,13 @@ public class AuthorHibertnateDAOServiceTests {
 	
 	@Test
 	public void testSelectAll() {
-		List<Author> authors = authorDAOService.selectAll();
+		List<Author> authors = authorDAOService.getAll();
 		assertTrue(authors.size() > 0);
 	}
 
 	@Test
 	public void testSelect() {
-		Author author = authorDAOService.select(1);
+		Author author = authorDAOService.getById(1);
 		assertNotNull(author);
 	}
 
@@ -46,7 +46,7 @@ public class AuthorHibertnateDAOServiceTests {
 
 	@Test
 	public void testUpdate() {
-		Author author = authorDAOService.select(1);
+		Author author = authorDAOService.getById(1);
 		author.setName("Changed test name");
 		Integer id = authorDAOService.update(author);
 		assertNotNull(id);

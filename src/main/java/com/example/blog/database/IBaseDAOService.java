@@ -16,14 +16,14 @@ public interface IBaseDAOService <Entity> {
 	 * This method return all entities for represent table of database
 	 * @return List all entities in database
 	 */
-	List<Entity> selectAll();
+	List<Entity> getAll();
 	
 	/**
 	 * This method looking for entity in database by ID
 	 * @param id Entity ID
 	 * @return Entity object if founded, else null
 	 */
-	Entity select(Integer id);
+	Entity getById(Integer id);
 	
 	/**
 	 * This method create new instance of Entity in database

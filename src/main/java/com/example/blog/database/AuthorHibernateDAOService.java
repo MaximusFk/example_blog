@@ -40,7 +40,7 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 	}
 
 	@Override
-	public List<Author> selectAll() {
+	public List<Author> getAll() {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String tableName = getTableName();
@@ -54,7 +54,7 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 	}
 
 	@Override
-	public Author select(Integer id) {
+	public Author getById(Integer id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Author author = session.get(Author.class, id);

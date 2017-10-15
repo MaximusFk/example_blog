@@ -40,7 +40,7 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 	}
 
 	@Override
-	public List<Article> selectAll() {
+	public List<Article> getAll() {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			String tableName = getTableName();
@@ -54,7 +54,7 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 	}
 
 	@Override
-	public Article select(Integer id) {
+	public Article getById(Integer id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Article author = session.get(Article.class, id);

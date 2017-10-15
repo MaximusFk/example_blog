@@ -29,13 +29,13 @@ public class ArticleHibernateDAOServiceTests {
 	
 	@Test
 	public void testSelectAll() {
-		List<Article> articles = articleDAOService.selectAll();
+		List<Article> articles = articleDAOService.getAll();
 		assertTrue(articles.size() > 0);
 	}
 
 	@Test
 	public void testSelect() {
-		Article article = articleDAOService.select(1);
+		Article article = articleDAOService.getById(1);
 		assertNotNull(article);
 	}
 
@@ -49,7 +49,7 @@ public class ArticleHibernateDAOServiceTests {
 
 	@Test
 	public void testUpdate() {
-		Article article = articleDAOService.select(1);
+		Article article = articleDAOService.getById(1);
 		article.setTitle("Changet test title");
 		Integer id = articleDAOService.update(article);
 		assertNotNull(id);
