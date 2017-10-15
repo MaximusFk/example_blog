@@ -16,29 +16,29 @@ import org.springframework.stereotype.Repository;
 import com.example.blog.entity.Author;
 
 /**
- * Base DAO implementation for Author data model using Hibernate
+ * IAuthorDAOService implementation for Author data model using Hibernate
  * @author maximusfk
  *
  */
 @Repository
 @ComponentScan
 @Transactional
-public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
+public class AuthorHibernateDAOService implements IAuthorDAOService {
 	
-	private static Logger LOGGER = Logger.getLogger(AuthorHibernateDAOService.class);
+	private static final Logger logger = Logger.getLogger(AuthorHibernateDAOService.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	/**
-	 * Method return table name from @Table annotation
-	 * @return table name
-	 */
+	
 	private static String getTableName() {
 		Table table = Author.class.getAnnotation(Table.class);
 		return table.name();
 	}
 
+	/* 
+	 * @see com.example.blog.database.IAuthorDAOService#getAll()
+	 */
 	@Override
 	public List<Author> getAll() {
 		try {
@@ -48,11 +48,14 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 			return result;
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
+	/* 
+	 * @see com.example.blog.database.IAuthorDAOService#getById(java.lang.Integer)
+	 */
 	@Override
 	public Author getById(Integer id) {
 		try {
@@ -61,11 +64,14 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 			return author;
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
+	/* 
+	 * @see com.example.blog.database.IAuthorDAOService#create(com.example.blog.entity.Author)
+	 */
 	@Override
 	public Integer create(Author author) {
 		try {
@@ -74,11 +80,14 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 			return id;
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
+	/* 
+	 * @see com.example.blog.database.IAuthorDAOService#update(com.example.blog.entity.Author)
+	 */
 	@Override
 	public Integer update(Author author) {
 		try {
@@ -86,12 +95,15 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 			session.saveOrUpdate(author);
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 		return author.getId();
 	}
 
+	/* 
+	 * @see com.example.blog.database.IAuthorDAOService#delete(java.lang.Integer)
+	 */
 	@Override
 	public Boolean delete(Integer id) {
 		try {
@@ -107,7 +119,7 @@ public class AuthorHibernateDAOService implements IBaseDAOService<Author> {
 			}
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}

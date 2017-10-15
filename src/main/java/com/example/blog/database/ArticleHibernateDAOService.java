@@ -16,29 +16,29 @@ import org.springframework.stereotype.Repository;
 import com.example.blog.entity.Article;
 
 /**
- * Base DAO implementation Article data model using Hibernate
+ * IArticleDAOService implementation for Article data model using Hibernate
  * @author maximusfk
  *
  */
 @Repository
 @ComponentScan
 @Transactional
-public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
+public class ArticleHibernateDAOService implements IArticleDAOService {
 
-	private static Logger LOGGER = Logger.getLogger(ArticleHibernateDAOService.class);
+	private static final Logger logger = Logger.getLogger(ArticleHibernateDAOService.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	/**
-	 * Method return table name from @Table annotation
-	 * @return table name
-	 */
+	
 	private static String getTableName() {
 		Table table = Article.class.getAnnotation(Table.class);
 		return table.name();
 	}
 
+	/* 
+	 * @see com.example.blog.database.IArticleDAOService#getAll()
+	 */
 	@Override
 	public List<Article> getAll() {
 		try {
@@ -48,11 +48,14 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 			return result;
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
+	/* 
+	 * @see com.example.blog.database.IArticleDAOService#getById(java.lang.Integer)
+	 */
 	@Override
 	public Article getById(Integer id) {
 		try {
@@ -61,37 +64,46 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 			return author;
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
+	/* 
+	 * @see com.example.blog.database.IArticleDAOService#create(com.example.blog.entity.Article)
+	 */
 	@Override
-	public Integer create(Article entity) {
+	public Integer create(Article article) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			Integer id = (Integer) session.save(entity);
+			Integer id = (Integer) session.save(article);
 			return id;
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
+	/* 
+	 * @see com.example.blog.database.IArticleDAOService#update(com.example.blog.entity.Article)
+	 */
 	@Override
-	public Integer update(Article entity) {
+	public Integer update(Article article) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			session.saveOrUpdate(entity);
+			session.saveOrUpdate(article);
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
-		return entity.getId();
+		return article.getId();
 	}
 
+	/* 
+	 * @see com.example.blog.database.IArticleDAOService#delete(java.lang.Integer)
+	 */
 	@Override
 	public Boolean delete(Integer id) {
 		try {
@@ -107,7 +119,7 @@ public class ArticleHibernateDAOService implements IBaseDAOService<Article> {
 			}
 		}
 		catch (HibernateException e) {
-			LOGGER.error(e.getMessage());
+			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
