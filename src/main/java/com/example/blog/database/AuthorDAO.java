@@ -13,99 +13,77 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
+import com.example.blog.database.interfaces.IAuthorDAO;
 import com.example.blog.entity.Author;
 
 /**
  * IAuthorDAOService implementation for Author data model using Hibernate
+ * 
  * @author maximusfk
  *
  */
 @Repository
-@ComponentScan
 @Transactional
-public class AuthorHibernateDAOService implements IAuthorDAOService {
+public class AuthorDAO implements IAuthorDAO {
 	
-	private static final Logger logger = Logger.getLogger(AuthorHibernateDAOService.class);
+	private static final Logger logger = Logger.getLogger(AuthorDAO.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
-	private static String getTableName() {
-		Table table = Author.class.getAnnotation(Table.class);
-		return table.name();
-	}
 
-	/* 
-	 * @see com.example.blog.database.IAuthorDAOService#getAll()
-	 */
 	@Override
-	public List<Author> getAll() {
+	public List<Author> getAll(int startRow, int maxResults) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			String tableName = getTableName();
-			List<Author> result = session.createQuery("FROM " + tableName).list();
+			List<Author> result = session.createCriteria(Author.class)
+										.setFirstResult(startRow)
+										.setMaxResults(maxResults)
+										.list();
 			return result;
-		}
-		catch (HibernateException e) {
+		} catch(HibernateException e) {
 			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
-	/* 
-	 * @see com.example.blog.database.IAuthorDAOService#getById(java.lang.Integer)
-	 */
 	@Override
 	public Author getById(Integer id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Author author = session.get(Author.class, id);
 			return author;
-		}
-		catch (HibernateException e) {
+		} catch(HibernateException e) {
 			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
-	/* 
-	 * @see com.example.blog.database.IAuthorDAOService#create(com.example.blog.entity.Author)
-	 */
 	@Override
 	public Integer create(Author author) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Integer id = (Integer) session.save(author);
 			return id;
-		}
-		catch (HibernateException e) {
+		} catch(HibernateException e) {
 			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
 
-	/* 
-	 * @see com.example.blog.database.IAuthorDAOService#update(com.example.blog.entity.Author)
-	 */
 	@Override
 	public Integer update(Author author) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.saveOrUpdate(author);
-		}
-		catch (HibernateException e) {
+			return author.getId();
+		} catch(HibernateException e) {
 			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
-		return author.getId();
 	}
 
-	/* 
-	 * @see com.example.blog.database.IAuthorDAOService#delete(java.lang.Integer)
-	 */
 	@Override
-	public Boolean delete(Integer id) {
+	public boolean delete(Integer id) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Author author = session.get(Author.class, id);
@@ -117,11 +95,9 @@ public class AuthorHibernateDAOService implements IAuthorDAOService {
 			else {
 				return false;
 			}
-		}
-		catch (HibernateException e) {
+		} catch(HibernateException e) {
 			logger.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}
-
 }

@@ -13,49 +13,50 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.example.blog.database.AuthorHibernateDAOService;
+import com.example.blog.database.AuthorDAO;
 import com.example.blog.entity.Author;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration("classpath:hibernate_bean_test_config.xml")
+@ContextConfiguration("classpath:hibernate-bean-test-config.xml")
 @Transactional
-public class AuthorHibertnateDAOServiceTests {
+public class AuthorDAOTests {
 
 	@Autowired
-	AuthorHibernateDAOService authorDAOService;
+	private AuthorDAO authorDAO;
+	
+	private static final Integer DEFAULT_AUTHOR_ID = 1;
 	
 	@Test
 	public void testGetAll() {
-		List<Author> authors = authorDAOService.getAll();
+		List<Author> authors = authorDAO.getAll(0, 500);
 		assertTrue(authors.size() > 0);
 	}
 
 	@Test
 	public void testGetById() {
-		Author author = authorDAOService.getById(1);
+		Author author = authorDAO.getById(DEFAULT_AUTHOR_ID);
 		assertNotNull(author);
 	}
 
 	@Test
 	public void testCreate() {
 		Author author = new Author(null, "Test name", "test@email.com");
-		Integer created_id = authorDAOService.create(author);
+		Integer created_id = authorDAO.create(author);
 		assertNotNull(created_id);
 	}
 
 	@Test
 	public void testUpdate() {
-		Author author = authorDAOService.getById(1);
+		Author author = authorDAO.getById(DEFAULT_AUTHOR_ID);
 		author.setName("Changed test name");
-		Integer id = authorDAOService.update(author);
+		Integer id = authorDAO.update(author);
 		assertNotNull(id);
 	}
 
 	@Test
 	public void testDelete() {
-		Boolean deleted = authorDAOService.delete(1);
-		assertNotNull(deleted);
+		boolean deleted = authorDAO.delete(DEFAULT_AUTHOR_ID);
 		assertTrue(deleted);
 	}
 

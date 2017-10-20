@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:hibernate_bean_config.xml")
+@ImportResource("classpath:hibernate-bean-config.xml")
 public class ExampleBlogApplication {
 
 	public static void main(String[] args) {
